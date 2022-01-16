@@ -181,13 +181,13 @@ export default {
     },
   },
   async mounted() {
-    try {
-      const wallet = await this.$web3.eth.requestAccounts()
-      this.walletToken = wallet[0]
-      this.commitWallet({ wallet: this.walletToken })
-    } catch (error) {
-      alert('já existe um processo aberto!')
-    }
+    // try {
+    //   const wallet = await this.$web3.eth.requestAccounts()
+    //   this.walletToken = wallet[0]
+    //   this.commitWallet({ wallet: this.walletToken })
+    // } catch (error) {
+    //   alert('já existe um processo aberto!')
+    // }
   },
   methods: {
     ...mapMutations({ commitWallet: 'wallet/saveWallet' }),

@@ -216,7 +216,8 @@
 
 <script>
 /* eslint-disable no-console */
-import { mapGetters } from 'vuex'
+
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ChartsLayout',
   data: () => ({
@@ -289,17 +290,28 @@ export default {
       return this.updatePageMetho(start, end)
     },
   },
+
   async mounted() {
     try {
-      // getWallets/tokentx/0xf3147987a00d35eecc10c731269003ca093740ca/0x7746470733738eBA82357A9E38ACFF69a21BE8A2`
-      const { wallet } = await this.$axios.$get(
-        `/getWallets/tokentx/${this.getWallet}/${this.page}`
-      )
-      this.getWallets.push(...wallet)
-      this.totalItems = this.getWallets.length
-      this.updatePagePagination(this.page)
+      const walletToken = await this.$web3.eth.requestAccounts()
+
+      if (walletToken[0]) {
+        this.walletToken = walletToken[0]
+        this.commitWallet({ wallet: walletToken[0] })
+        const { wallet } = await this.$axios.$get(
+          `/getWallets/tokentx/${walletToken[0]}/${this.page}`
+        )
+
+        this.getWallets.push(...wallet)
+        this.totalItems = this.getWallets.length
+        this.updatePagePagination(this.page)
+      } else
+        setTimeout(() => {
+          alert(
+            'Não Foi possivel prosseguir com ação por falta do id da sua carteira!'
+          )
+        }, 1200)
     } catch (error) {
-      console.log(error.response)
       // Codigo de error Para mostrar  Swal
       if (error.response !== undefined) {
         if (error.response.status === 404) {
@@ -320,6 +332,7 @@ export default {
   //   }
   // },
   methods: {
+    ...mapMutations({ commitWallet: 'wallet/saveWallet' }),
     async rechargeItems() {
       try {
         const resp = await this.$axios.$get(
