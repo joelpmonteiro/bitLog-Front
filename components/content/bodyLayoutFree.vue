@@ -9,7 +9,7 @@
                 <div class="subheader">Balanço Em BNB</div>
               </div>
               <div class="d-flex align-items-baseline">
-                <div class="h1 mb-0 me-2">$4,30</div>
+                <div class="h1 mb-0 me-2">$ {{ tokenSupply.status }}</div>
                 <div class="me-auto">
                   <span
                     class="text-green d-inline-flex align-items-center lh-1"
@@ -828,6 +828,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'BodyLayoutFree',
   data() {
@@ -1009,6 +1010,12 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters({ supply: `wallet/getSupply` }),
+    tokenSupply() {
+      return this.supply
+    },
   },
 }
 </script>
