@@ -1,7 +1,13 @@
 <template>
   <div class="page-wrapper">
-    <wrapper-header></wrapper-header>
-    <contentBodyLayout></contentBodyLayout>
+    <wrapper-header
+      v-if="$route.path === '/dashboard/profile'"
+    ></wrapper-header>
+    <LazyWrapperHeaderFree v-else></LazyWrapperHeaderFree>
+    <contentBodyLayout
+      v-if="$route.path === '/dashboard/profile'"
+    ></contentBodyLayout>
+    <LazyContentBodyLayoutFree v-else></LazyContentBodyLayoutFree>
     <footer-layout></footer-layout>
   </div>
 </template>

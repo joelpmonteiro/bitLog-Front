@@ -4,23 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt generate",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js && npm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix",
-    "vercel-build": "rm -rf ~/.node-gyp && npm install && npm i -g node-gyp"
-
+    "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "apexcharts": "^3.33.0",
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
     "secure-ls": "^1.2.6",
     "v-tooltip": "^3.0.0-beta.1",
     "vue": "^2.6.14",
+    "vue-apexcharts": "^1.6.2",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
     "vuex-persistedstate": "^4.1.0",

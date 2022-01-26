@@ -32,10 +32,11 @@ export default {
   plugins: [
     { src: '~/plugins/vuex-persistedstate.js', mode: 'client' },
     { src: '~/plugins/web3.js', mode: 'client' },
-    { src: '~/plugins/script.js', mode: 'client' },
+    // { src: '~/plugins/script.js', mode: 'client' },
     { src: '~/plugins/js/tabler.min.js', mode: 'client' },
     { src: '~/plugins/js/demo.min.js', mode: 'client' },
-    { src: '~/plugins/graphs/logPage.js', mode: 'client' },
+    // { src: '~/plugins/graphs/logPage.js', mode: 'client' },
+    { src: '~/plugins/vue-apexCharts.js', mode: 'client' },
     // { src: '~/plugins/libs/apexcharts/dist/apexcharts.min.js', mode: 'client' },
   ],
 
